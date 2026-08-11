@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail étudiant — nanterre</title>
+</head>
+
+<body>
+
+  <h1>Portail étudiant</h1>
+
+  <p><strong></strong></p>
+
+  <hr>
+
+  <h2>Connexion</h2>
+
+  <label>Numéro étudiant</label><br>
+  <input id="numero" type="text" placeholder="41005793"><br><br>
+
+  <label>Mot de passe</label><br>
+  <input type="password" placeholder="Mot de passe"><br><br>
+
+  <button onclick="connexion()">Se connecter</button>
+
+  <div id="espace" style="display:none;">
+
+    <hr>
+
+    <h2>Notes et résultats</h2>
+
+    <p><strong>Étudiant :</strong> Étudiant</p>
+    <p><strong>Numéro :</strong> 41005793</p>
+    <p><strong>Formation :</strong> Licence 3 Droit franco-allemand</p>
+    <p><strong>Année universitaire :</strong> 2025/2026</p>
+
+    <h3>Semestre 5</h3>
+
+    <table border="1" cellpadding="10">
+      <tr>
+        <th>Matière</th>
+        <th>Note /20</th>
+        <th>Crédits</th>
+      </tr>
+
+      <tr>
+        <td>Droit administratif</td>
+        <td>12</td>
+        <td>4,5</td>
+      </tr>
+
+      <tr>
+        <td>Droit civil : contrats</td>
+        <td>11</td>
+        <td>4,5</td>
+      </tr>
+
+      <tr>
+        <td>Droit de l'Union européenne</td>
+        <td>13</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Grundrechte</td>
+        <td>14</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Schuldrecht</td>
+        <td>10</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Strafrecht</td>
+        <td>12</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Allemand juridique</td>
+        <td>13</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Anglais</td>
+        <td>11</td>
+        <td>3</td>
+      </tr>
+    </table>
+
+    <h3>Moyenne générale : 12,00 /20</h3>
+    <p><strong>Résultat : Admis</strong></p>
+
+  </div>
+
+  <script>
+    function connexion() {
+      const numero = document.getElementById("numero").value;
+
+      if (numero === "41005793") {
+        document.getElementById("espace").style.display = "block";
+      } else {
+        alert("Utilisez le numéro 41005793 .");
+      }
+    }
+  </script>
+
+</body>
+</html>
