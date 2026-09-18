@@ -1,0 +1,2840 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nanterre Université — Démonstration</title>
+
+<style>
+
+:root{
+    --red:#d72f27;
+    --black:#111;
+    --white:#fff;
+    --grey:#f4f4f4;
+    --border:#ddd;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    background:#fff;
+    color:#111;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   BANDEAU DEMONSTRATION
+========================= */
+
+.demo-banner{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:9999;
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:7px 10px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.3px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    margin-top:30px;
+    min-height:105px;
+    padding:18px 28px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:50px;
+    height:50px;
+    position:relative;
+}
+
+.logo:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:2px;
+    width:28px;
+    height:45px;
+    background:var(--red);
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        100% 54%,
+        57% 54%,
+        57% 100%,
+        0 68%
+    );
+}
+
+.logo:after{
+    content:"";
+    position:absolute;
+    left:30px;
+    bottom:0;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:var(--red);
+}
+
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    line-height:1;
+}
+
+.brand-title span{
+    display:block;
+}
+
+.brand-sub{
+    margin-top:6px;
+    color:#555;
+    font-size:10px;
+    font-weight:700;
+}
+
+.menu{
+    border:0;
+    background:transparent;
+    color:#111;
+    font-size:34px;
+    font-weight:900;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:350px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    padding:45px 20px;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    inset:-50px;
+    opacity:.58;
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 45%,
+            #cfcfcf 46%,
+            #cfcfcf 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            -45deg,
+            transparent 45%,
+            #cfcfcf 46%,
+            #cfcfcf 49%,
+            transparent 50%
+        );
+    background-size:90px 90px;
+}
+
+.hero h1{
+    position:relative;
+    margin:0;
+    color:var(--red);
+    font-size:clamp(45px,8vw,76px);
+    line-height:.98;
+    font-weight:800;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.tabs{
+    max-width:900px;
+    margin:auto;
+    display:flex;
+    border-bottom:2px solid #111;
+}
+
+.tab{
+    flex:1;
+    border:0;
+    background:#fff;
+    color:#111;
+    padding:18px 5px;
+    font-size:21px;
+    border-bottom:7px solid transparent;
+}
+
+.tab.active{
+    color:var(--red);
+    border-bottom-color:var(--red);
+}
+
+/* =========================
+   CONTENU
+========================= */
+
+main{
+    padding:34px 6vw 70px;
+}
+
+.page{
+    display:none;
+    max-width:900px;
+    margin:auto;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =========================
+   CARTES
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    min-height:270px;
+    border:7px solid var(--red);
+    border-radius:44px;
+    background:#fff;
+    color:#111;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
+    appearance:none;
+    transition:.15s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+}
+
+.card h2{
+    color:#111;
+    font-size:37px;
+    font-weight:400;
+    margin:18px 0 12px;
+}
+
+.card p{
+    color:#111;
+    font-size:20px;
+    margin:0;
+}
+
+/* =========================
+   ICONES
+========================= */
+
+.icon{
+    width:70px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.icon svg{
+    width:62px;
+    height:62px;
+    stroke:#111;
+    fill:none;
+    stroke-width:2.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+/* =========================
+   PAGE INTERNE
+========================= */
+
+.back{
+    background:#111;
+    color:#fff;
+    border:0;
+    border-radius:10px;
+    padding:12px 18px;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.panel{
+    border:3px solid var(--red);
+    border-radius:25px;
+    padding:25px;
+    background:#fff;
+}
+
+.panel h2{
+    font-size:34px;
+    margin:0 0 10px;
+}
+
+.panel h3{
+    font-size:24px;
+    margin-top:28px;
+}
+
+.notice{
+    background:var(--grey);
+    border-left:6px solid var(--red);
+    padding:16px;
+    border-radius:12px;
+    margin:12px 0;
+}
+
+/* =========================
+   ANNEES
+========================= */
+
+.year{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:18px;
+    margin:12px 0;
+}
+
+.year-title{
+    font-size:20px;
+    font-weight:700;
+}
+
+.year-status{
+    display:inline-block;
+    margin-top:7px;
+    color:#555;
+    font-size:14px;
+}
+
+.year button{
+    margin-top:14px;
+    background:#111;
+    color:#fff;
+    border:0;
+    border-radius:9px;
+    padding:10px 15px;
+}
+
+/* =========================
+   TABLEAUX DE NOTES
+========================= */
+
+.result-head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:18px 0;
+}
+
+.result-box{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:14px;
+    background:#fafafa;
+}
+
+.result-box strong{
+    display:block;
+    font-size:12px;
+    color:#666;
+    text-transform:uppercase;
+    margin-bottom:5px;
+}
+
+.grade-table-wrap{
+    overflow-x:auto;
+    margin-top:12px;
+}
+
+.grade-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+}
+
+.grade-table th,
+.grade-table td{
+    border:1px solid #d5d5d5;
+    padding:10px 9px;
+    text-align:left;
+}
+
+.grade-table th{
+    background:#111;
+    color:#fff;
+    font-size:13px;
+}
+
+.grade-table td:nth-child(2),
+.grade-table td:nth-child(3),
+.grade-table td:nth-child(4){
+    text-align:center;
+}
+
+.grade-ok,
+.grade-fail{
+    font-weight:700;
+}
+
+.semester-title{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+    margin-top:28px;
+}
+
+.semester-title h3{
+    margin:0;
+}
+
+.semester-average{
+    font-weight:700;
+    color:#111;
+}
+
+.total-box{
+    margin-top:24px;
+    padding:18px;
+    border:2px solid var(--red);
+    border-radius:14px;
+    background:#fff;
+}
+
+.total-box strong{
+    font-size:22px;
+}
+
+/* =========================
+   DOCUMENTS
+========================= */
+
+.document{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.document-info{
+    flex:1;
+}
+
+.document-name{
+    font-weight:700;
+}
+
+.document-meta{
+    color:#666;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.document-actions{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.action{
+    border:0;
+    background:var(--red);
+    color:#fff;
+    border-radius:10px;
+    padding:11px 15px;
+    font-weight:700;
+    margin:5px 3px;
+}
+
+.action.black{
+    background:#111;
+}
+
+.action.small{
+    padding:8px 11px;
+    font-size:12px;
+    margin:0;
+}
+
+input[type=file]{
+    max-width:100%;
+    margin:10px 0;
+}
+
+/* =========================
+   GESTION
+========================= */
+
+.admin-box{
+    border:1px solid #ccc;
+    border-radius:16px;
+    padding:20px;
+    margin-top:20px;
+    background:#fafafa;
+}
+
+.admin-select,
+.admin-input{
+    width:100%;
+    padding:12px;
+    border:1px solid #bbb;
+    border-radius:8px;
+    background:white;
+    margin:10px 0;
+}
+
+.file-preview{
+    margin-top:10px;
+    padding:10px;
+    border-radius:8px;
+    background:#eee;
+    font-size:13px;
+    color:#555;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    color:#555;
+    font-size:12px;
+    padding:20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:380px;
+    }
+
+    .hero h1{
+        font-size:53px;
+    }
+
+    .tab{
+        font-size:17px;
+    }
+
+    .card h2{
+        font-size:35px;
+    }
+
+    .panel{
+        padding:18px;
+    }
+
+    .result-head{
+        grid-template-columns:1fr;
+    }
+
+    .semester-title{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .document{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .document-actions{
+        justify-content:flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="demo-banner">
+    DÉMONSTRATION — SITE NON OFFICIEL — DONNÉES FICTIVES
+</div>
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="logo"></div>
+
+        <div>
+
+            <div class="brand-title">
+                <span>Nanterre</span>
+                <span>Université</span>
+            </div>
+
+            <div class="brand-sub">
+                PORTAIL ÉTUDIANT — MAQUETTE
+            </div>
+
+        </div>
+
+    </div>
+
+    <button
+        class="menu"
+        onclick="openMenu()"
+        aria-label="Menu"
+    >
+        ☰
+    </button>
+
+</header>
+
+<section class="hero">
+
+    <h1>
+        Services<br>
+        numériques pour<br>
+        les étudiant·es
+    </h1>
+
+</section>
+
+<nav class="tabs">
+
+    <button
+        class="tab active"
+        onclick="changeTab(this,'personnel')"
+    >
+        Personnel
+    </button>
+
+    <button
+        class="tab"
+        onclick="changeTab(this,'services')"
+    >
+        Services
+    </button>
+
+    <button
+        class="tab"
+        onclick="changeTab(this,'outils')"
+    >
+        Outils
+    </button>
+
+</nav>
+
+<main>
+
+<section id="home" class="page active">
+
+    <div id="cards" class="grid"></div>
+
+</section>
+
+<section id="detail" class="page">
+
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← Retour aux services
+    </button>
+
+    <div
+        id="content"
+        class="panel"
+    ></div>
+
+</section>
+
+</main>
+
+<footer>
+
+    Nanterre Université —
+    démonstration non officielle
+
+    <br><br>
+
+    Toutes les informations,
+    notes et documents affichés
+    sont fictifs.
+
+</footer>
+
+<script>
+
+/* =====================================================
+   ICONES
+===================================================== */
+
+const icons = {
+
+    arrow:`
+        <svg viewBox="0 0 64 64">
+            <path d="M10 32h40"></path>
+            <path d="M38 18l14 14-14 14"></path>
+        </svg>
+    `,
+
+    signup:`
+        <svg viewBox="0 0 64 64">
+            <rect x="15" y="9" width="34" height="46" rx="3"></rect>
+            <path d="M22 20h20"></path>
+            <path d="M22 29h20"></path>
+            <path d="M22 38h11"></path>
+            <path d="M39 43l7 7"></path>
+            <path d="M46 43l-7 7"></path>
+        </svg>
+    `,
+
+    mail:`
+        <svg viewBox="0 0 64 64">
+            <rect x="8" y="14" width="48" height="36" rx="4"></rect>
+            <path d="M10 18l22 18 22-18"></path>
+        </svg>
+    `,
+
+    document:`
+        <svg viewBox="0 0 64 64">
+            <path d="M17 7h23l10 10v40H17z"></path>
+            <path d="M40 7v11h10"></path>
+            <path d="M25 29h17"></path>
+            <path d="M25 38h17"></path>
+            <path d="M25 47h12"></path>
+        </svg>
+    `,
+
+    calendar:`
+        <svg viewBox="0 0 64 64">
+            <rect x="9" y="13" width="46" height="43" rx="4"></rect>
+            <path d="M9 25h46"></path>
+            <path d="M20 7v12"></path>
+            <path d="M44 7v12"></path>
+            <path d="M19 34h6"></path>
+            <path d="M29 34h6"></path>
+            <path d="M39 34h6"></path>
+            <path d="M19 43h6"></path>
+            <path d="M29 43h6"></path>
+        </svg>
+    `,
+
+    folder:`
+        <svg viewBox="0 0 64 64">
+            <path d="M7 17h19l6 7h25v29H7z"></path>
+            <path d="M7 24h50"></path>
+        </svg>
+    `,
+
+    profile:`
+        <svg viewBox="0 0 64 64">
+            <circle cx="32" cy="21" r="10"></circle>
+            <path d="M14 55c2-12 9-18 18-18s16 6 18 18"></path>
+        </svg>
+    `,
+
+    briefcase:`
+        <svg viewBox="0 0 64 64">
+            <rect x="8" y="20" width="48" height="34" rx="4"></rect>
+            <path d="M23 20v-7h18v7"></path>
+            <path d="M8 32h48"></path>
+            <path d="M28 32v7h8v-7"></path>
+        </svg>
+    `,
+
+    certificate:`
+        <svg viewBox="0 0 64 64">
+            <circle cx="32" cy="27" r="18"></circle>
+            <path d="M25 27l5 5 10-11"></path>
+            <path d="M24 43l-3 15 11-6 11 6-3-15"></path>
+        </svg>
+    `,
+
+    file:`
+        <svg viewBox="0 0 64 64">
+            <path d="M16 7h24l9 9v41H16z"></path>
+            <path d="M40 7v10h9"></path>
+            <path d="M25 30h15"></path>
+            <path d="M25 39h15"></path>
+            <path d="M25 48h10"></path>
+        </svg>
+    `,
+
+    contract:`
+        <svg viewBox="0 0 64 64">
+            <path d="M13 8h38v48H13z"></path>
+            <path d="M21 20h22"></path>
+            <path d="M21 29h22"></path>
+            <path d="M21 38h15"></path>
+            <path d="M37 47l5-5 7 7"></path>
+        </svg>
+    `,
+
+    graduation:`
+        <svg viewBox="0 0 64 64">
+            <path d="M7 25l25-13 25 13-25 13z"></path>
+            <path d="M17 31v13c8 7 22 7 30 0V31"></path>
+            <path d="M57 25v16"></path>
+        </svg>
+    `,
+
+    network:`
+        <svg viewBox="0 0 64 64">
+            <circle cx="12" cy="32" r="6"></circle>
+            <circle cx="50" cy="14" r="6"></circle>
+            <circle cx="50" cy="50" r="6"></circle>
+            <path d="M18 30l26-13"></path>
+            <path d="M18 34l26 13"></path>
+        </svg>
+    `,
+
+    tools:`
+        <svg viewBox="0 0 64 64">
+            <path d="M39 10a13 13 0 0 0-8 21L12 50a6 6 0 0 0 8 8l19-19a13 13 0 0 0 8-24l-9 9-7-7z"></path>
+        </svg>
+    `
+
+};
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+const services = [
+
+    {
+        id:"reinscription",
+        tab:"personnel",
+        icon:"arrow",
+        title:"Ré-inscription",
+        description:"Ré-inscription en ligne"
+    },
+
+    {
+        id:"ipweb",
+        tab:"personnel",
+        icon:"signup",
+        title:"Ip-web",
+        description:"Inscription pédagogique"
+    },
+
+    {
+        id:"messagerie",
+        tab:"personnel",
+        icon:"mail",
+        title:"Messagerie",
+        description:"Messagerie de démonstration"
+    },
+
+    {
+        id:"documents",
+        tab:"personnel",
+        icon:"document",
+        title:"Mes documents",
+        description:"Résultats et documents fictifs"
+    },
+
+    {
+        id:"emploi",
+        tab:"personnel",
+        icon:"calendar",
+        title:"Emploi du temps",
+        description:"Mon emploi du temps"
+    },
+
+    {
+        id:"scolarite",
+        tab:"personnel",
+        icon:"folder",
+        title:"Scolarité",
+        description:"Mon dossier étudiant"
+    },
+
+    {
+        id:"compte",
+        tab:"personnel",
+        icon:"profile",
+        title:"Mon compte",
+        description:"Mon compte de démonstration"
+    },
+
+    {
+        id:"job",
+        tab:"services",
+        icon:"briefcase",
+        title:"JobTeaser",
+        description:"Plateforme carrières fictive"
+    },
+
+    {
+        id:"honorabilite",
+        tab:"services",
+        icon:"certificate",
+        title:"Honorabilité",
+        description:"Attestation fictive"
+    },
+
+    {
+        id:"justificatifs",
+        tab:"services",
+        icon:"file",
+        title:"Pièces justificatives",
+        description:"Aucune pièce pour le moment"
+    },
+
+    {
+        id:"contrat",
+        tab:"services",
+        icon:"contract",
+        title:"Contrat pédagogique",
+        description:"Pas encore disponible"
+    },
+
+    {
+        id:"cours",
+        tab:"services",
+        icon:"graduation",
+        title:"Cours en ligne",
+        description:"Espaces de cours fictifs"
+    },
+
+    {
+        id:"conventions",
+        tab:"services",
+        icon:"briefcase",
+        title:"Conventions de stage",
+        description:"Aucune convention enregistrée"
+    },
+
+    {
+        id:"gestion",
+        tab:"services",
+        icon:"tools",
+        title:"Gestion du compte",
+        description:"Gestion des documents de démonstration"
+    },
+
+    {
+        id:"outils",
+        tab:"outils",
+        icon:"tools",
+        title:"Outils numériques",
+        description:"Outils de démonstration"
+    },
+
+    {
+        id:"reseau",
+        tab:"outils",
+        icon:"network",
+        title:"Ressources numériques",
+        description:"Ressources fictives"
+    }
+
+];
+
+
+/* =====================================================
+   ANNÉES
+===================================================== */
+
+const years = [
+
+    {
+        id:"l1-1",
+        title:"L1 — Année 1",
+        status:"Ajournée"
+    },
+
+    {
+        id:"l1-2",
+        title:"L1 — Année 2",
+        status:"Admise"
+    },
+
+    {
+        id:"l2-1",
+        title:"L2 — Année 1",
+        status:"Non validée"
+    },
+
+    {
+        id:"l2-2",
+        title:"L2 — Année 2",
+        status:"Admise"
+    },
+
+    {
+        id:"l3",
+        title:"L3 — 2025–2026",
+        status:"Admise"
+    }
+
+];
+
+
+/* =====================================================
+   NOTES FICTIVES
+===================================================== */
+
+const resultsData = {
+
+    "l1-1":{
+
+        formation:"Licence Droit franco-allemand — L1",
+        session:"Session 1",
+        average:"9,84 / 20",
+        result:"Ajournée",
+
+        semesters:[
+
+            {
+                name:"Semestre 1",
+                average:"9,70 / 20",
+
+                subjects:[
+                    ["Introduction au droit","8,5","6"],
+                    ["Droit constitutionnel 1","9,0","6"],
+                    ["Histoire du droit","10,5","4"],
+                    ["Méthodologie juridique","11,0","3"],
+                    ["Économie","8,5","3"],
+                    ["Allemand juridique 1","12,0","4"],
+                    ["Langue allemande","11,5","4"]
+                ]
+            },
+
+            {
+                name:"Semestre 2",
+                average:"9,98 / 20",
+
+                subjects:[
+                    ["Droit civil 1","9,0","6"],
+                    ["Droit constitutionnel 2","8,5","6"],
+                    ["Institutions européennes","10,0","4"],
+                    ["Introduction à la science politique","9,5","4"],
+                    ["Économie","10,5","3"],
+                    ["Langue allemande juridique","11,5","4"],
+                    ["Méthodologie juridique 2","10,5","3"]
+                ]
+            }
+
+        ]
+
+    },
+
+
+    "l1-2":{
+
+        formation:"Licence Droit franco-allemand — L1",
+        session:"Session 1",
+        average:"12,75 / 20",
+        result:"Admise",
+
+        semesters:[
+
+            {
+                name:"Semestre 3",
+                average:"12,60 / 20",
+
+                subjects:[
+                    ["Droit administratif 1","12,0","6"],
+                    ["Droit civil — Contrats 1","11,5","6"],
+                    ["Droit de l'Union européenne","13,0","4"],
+                    ["Institutions juridictionnelles","12,5","4"],
+                    ["Histoire du droit","11,0","3"],
+                    ["Grundrechte","14,0","5"],
+                    ["Allemand juridique","13,0","4"]
+                ]
+            },
+
+            {
+                name:"Semestre 4",
+                average:"12,90 / 20",
+
+                subjects:[
+                    ["Droit administratif 2","12,0","6"],
+                    ["Droit des affaires","11,5","5"],
+                    ["Droit civil — Contrats 2","12,5","6"],
+                    ["Droit de l'Union européenne 2","13,0","4"],
+                    ["Strafrecht","13,0","5"],
+                    ["Allemand juridique 2","14,0","4"],
+                    ["Projet collaboratif","14,5","3"]
+                ]
+            }
+
+        ]
+
+    },
+
+
+    "l2-1":{
+
+        formation:"Licence Droit franco-allemand — L2",
+        session:"Session 1",
+        average:"9,76 / 20",
+        result:"Non validée",
+
+        semesters:[
+
+            {
+                name:"Semestre 3",
+                average:"9,40 / 20",
+
+                subjects:[
+                    ["Droit administratif 1","7,5","6"],
+                    ["Droit civil — Contrats 1","8,0","6"],
+                    ["Droit de l'Union européenne","11,5","4"],
+                    ["Droit des personnes","9,0","4"],
+                    ["Grundrechte","12,0","5"],
+                    ["Schuldrecht 1","7,0","5"],
+                    ["Strafrecht","12,5","5"],
+                    ["Allemand juridique","13,0","4"]
+                ]
+            },
+
+            {
+                name:"Semestre 4",
+                average:"10,12 / 20",
+
+                subjects:[
+                    ["Droit administratif 2","8,5","6"],
+                    ["Droit des affaires","11,0","5"],
+                    ["Droit civil — Contrats 2","9,5","6"],
+                    ["Droit européen approfondi","10,5","4"],
+                    ["Politische Wirtschaftliche Probleme","11,5","5"],
+                    ["Schuldrecht 2","8,0","5"],
+                    ["Strafverfahrensrecht","10,5","5"],
+                    ["Allemand juridique","12,0","4"]
+                ]
+            }
+
+        ]
+
+    },
+
+
+    "l2-2":{
+
+        formation:"Licence Droit franco-allemand — L2",
+        session:"Session 1",
+        average:"13,04 / 20",
+        result:"Admise",
+
+        semesters:[
+
+            {
+                name:"Semestre 3",
+                average:"13,20 / 20",
+
+                subjects:[
+                    ["UE Droit français","12,40","6"],
+                    ["Droit administratif 1","12,0","5"],
+                    ["Droit civil — Contrats 1","11,0","5"],
+                    ["Droit de l'Union européenne","14,0","4"],
+                    ["UE Droit allemand","13,10","6"],
+                    ["Grundrechte","14,0","5"],
+                    ["Schuldrecht 1","12,0","5"],
+                    ["Strafrecht","13,5","5"],
+                    ["Langue allemande","14,0","4"],
+                    ["Projet collaboratif","15,0","3"],
+                    ["Enseignement transversal","12,0","2"]
+                ]
+            },
+
+            {
+                name:"Semestre 4",
+                average:"12,88 / 20",
+
+                subjects:[
+                    ["UE Droit français","12,50","6"],
+                    ["Droit administratif 2","12,0","5"],
+                    ["Droit des affaires","13,0","5"],
+                    ["Droit civil — Contrats 2","12,5","5"],
+                    ["UE Droit allemand","13,25","6"],
+                    ["Politische Wirtschaftliche Probleme","13,0","5"],
+                    ["Schuldrecht 2","12,0","5"],
+                    ["Strafverfahrensrecht","14,0","5"],
+                    ["Langue allemande","14,5","4"],
+                    ["Allemand juridique écrit et oral 2","14,0","4"],
+                    ["Projet","15,0","3"],
+                    ["Monde judiciaire","15,0","3"],
+                    ["Enseignement transversal","12,0","2"]
+                ]
+            }
+
+        ]
+
+    },
+
+
+    "l3":{
+
+        formation:"Licence Droit franco-allemand — L3",
+        session:"Session 1 — 2025/2026",
+        average:"13,42 / 20",
+        result:"Admise",
+
+        semesters:[
+
+            {
+                name:"Semestre 5",
+                average:"13,20 / 20",
+
+                subjects:[
+                    ["Droit administratif approfondi","13,0","5"],
+                    ["Droit des obligations","12,5","5"],
+                    ["Droit des sociétés","13,5","5"],
+                    ["Droit de l'Union européenne approfondi","14,0","5"],
+                    ["Droit international public","12,5","4"],
+                    ["Europarecht","13,5","5"],
+                    ["Schuldrecht — Vertiefung","12,5","5"],
+                    ["Deutsches Gesellschaftsrecht","13,0","5"],
+                    ["Allemand juridique","14,0","4"],
+                    ["Méthodologie de recherche","13,5","2"]
+                ]
+            },
+
+            {
+                name:"Semestre 6",
+                average:"13,64 / 20",
+
+                subjects:[
+                    ["Droit administratif des biens","13,0","5"],
+                    ["Droit des contrats spéciaux","13,5","5"],
+                    ["Droit international","14,0","5"],
+                    ["Droit comparé franco-allemand","13,5","5"],
+                    ["Droit européen des affaires","13,0","4"],
+                    ["Deutsches Zivilrecht","13,0","5"],
+                    ["Europäisches Privatrecht","13,5","5"],
+                    ["Droit allemand approfondi","13,0","5"],
+                    ["Langue allemande juridique","14,0","4"],
+                    ["Mémoire / projet de recherche","14,5","5"]
+                ]
+            }
+
+        ]
+
+    }
+
+};
+
+
+/* =====================================================
+   DOCUMENTS
+===================================================== */
+
+/*
+   Chaque document possède :
+
+   - id
+   - name
+   - type
+   - data
+   - size
+
+   Le fichier est stocké localement en Base64.
+   Il reste donc dans le navigateur utilisé
+   pour cette maquette.
+*/
+
+let documents = JSON.parse(
+    localStorage.getItem("demoNanterreDocuments")
+) || {};
+
+
+/* =====================================================
+   OUTILS
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(
+            /[&<>"']/g,
+            character => ({
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[character])
+        );
+
+}
+
+
+function formatSize(bytes){
+
+    if(bytes < 1024){
+        return bytes + " octets";
+    }
+
+    if(bytes < 1024 * 1024){
+        return (
+            (bytes / 1024).toFixed(1)
+            + " Ko"
+        );
+    }
+
+    return (
+        (bytes / (1024 * 1024)).toFixed(1)
+        + " Mo"
+    );
+
+}
+
+
+function saveDocuments(){
+
+    try{
+
+        localStorage.setItem(
+            "demoNanterreDocuments",
+            JSON.stringify(documents)
+        );
+
+        return true;
+
+    }catch(error){
+
+        alert(
+            "Le fichier est trop volumineux pour être enregistré dans le navigateur. Essaie avec un document plus léger."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   ONGLET
+===================================================== */
+
+function changeTab(button,tab){
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(
+            element =>
+                element.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    currentTab = tab;
+
+    renderCards();
+
+}
+
+
+/* =====================================================
+   CARTES
+===================================================== */
+
+let currentTab = "personnel";
+
+
+function renderCards(){
+
+    document
+        .getElementById("home")
+        .classList.add("active");
+
+    document
+        .getElementById("detail")
+        .classList.remove("active");
+
+    const list =
+        services.filter(
+            service =>
+                service.tab === currentTab
+        );
+
+    document
+        .getElementById("cards")
+        .innerHTML =
+
+        list.map(
+            service => `
+
+                <button
+                    class="card"
+                    onclick="openService('${service.id}')"
+                >
+
+                    <div class="icon">
+                        ${icons[service.icon]}
+                    </div>
+
+                    <h2>
+                        ${escapeHTML(service.title)}
+                    </h2>
+
+                    <p>
+                        ${escapeHTML(service.description)}
+                    </p>
+
+                </button>
+
+            `
+        ).join("");
+
+}
+
+
+/* =====================================================
+   OUVERTURE SERVICE
+===================================================== */
+
+function openService(id){
+
+    document
+        .getElementById("home")
+        .classList.remove("active");
+
+    document
+        .getElementById("detail")
+        .classList.add("active");
+
+    if(id === "documents"){
+
+        showDocuments();
+
+    }
+
+    else if(id === "gestion"){
+
+        showManagement();
+
+    }
+
+    else{
+
+        showGeneric(id);
+
+    }
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =====================================================
+   RETOUR
+===================================================== */
+
+function goHome(){
+
+    renderCards();
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =====================================================
+   MES DOCUMENTS
+===================================================== */
+
+function showDocuments(){
+
+    document
+        .getElementById("content")
+        .innerHTML = `
+
+            <h2>
+                Mes documents
+            </h2>
+
+            <p>
+                Résultats et documents —
+                démonstration.
+            </p>
+
+            <div class="notice">
+
+                <strong>
+                    DOCUMENTS FICTIFS —
+                    DÉMONSTRATION
+                </strong>
+
+                <br><br>
+
+                Les documents présentés ici sont
+                fictifs et destinés uniquement
+                à cette maquette.
+
+            </div>
+
+            <h3>
+                Mes relevés de notes
+            </h3>
+
+            ${
+                years.map(
+                    year => `
+
+                        <div class="year">
+
+                            <div class="year-title">
+                                ${escapeHTML(year.title)}
+                            </div>
+
+                            <div class="year-status">
+
+                                Statut fictif :
+                                ${escapeHTML(year.status)}
+
+                            </div>
+
+                            <br>
+
+                            <button
+                                onclick="
+                                    showResults(
+                                        '${year.id}'
+                                    )
+                                "
+                            >
+
+                                Voir les résultats
+
+                            </button>
+
+                        </div>
+
+                    `
+                ).join("")
+            }
+
+        `;
+
+}
+
+
+/* =====================================================
+   RESULTATS
+===================================================== */
+
+function showResults(id){
+
+    const year =
+        years.find(
+            item =>
+                item.id === id
+        );
+
+    const data =
+        resultsData[id];
+
+    if(!year || !data){
+
+        return;
+
+    }
+
+    const yearDocuments =
+        documents[id] || [];
+
+    document
+        .getElementById("content")
+        .innerHTML = `
+
+            <h2>
+                ${escapeHTML(year.title)}
+            </h2>
+
+            <div class="notice">
+
+                <strong>
+                    DOCUMENT FICTIF —
+                    MAQUETTE DE DÉMONSTRATION
+                </strong>
+
+                <br><br>
+
+                Les notes, identités, numéros et
+                résultats ci-dessous sont inventés
+                et ne constituent pas un document
+                universitaire.
+
+            </div>
+
+            <div class="result-head">
+
+                <div class="result-box">
+
+                    <strong>
+                        Formation
+                    </strong>
+
+                    ${escapeHTML(data.formation)}
+
+                </div>
+
+                <div class="result-box">
+
+                    <strong>
+                        Session
+                    </strong>
+
+                    ${escapeHTML(data.session)}
+
+                </div>
+
+                <div class="result-box">
+
+                    <strong>
+                        Étudiant fictif
+                    </strong>
+
+                    Alex DUPONT
+
+                </div>
+
+                <div class="result-box">
+
+                    <strong>
+                        Identifiant fictif
+                    </strong>
+
+                    DEMO-1N2-58371
+
+                </div>
+
+            </div>
+
+            ${
+                data.semesters.map(
+                    semester => `
+
+                        <div class="semester-title">
+
+                            <h3>
+                                ${escapeHTML(
+                                    semester.name
+                                )}
+                            </h3>
+
+                            <div class="semester-average">
+
+                                Moyenne :
+                                ${escapeHTML(
+                                    semester.average
+                                )}
+
+                            </div>
+
+                        </div>
+
+                        <div class="grade-table-wrap">
+
+                            <table class="grade-table">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Enseignement
+                                        </th>
+
+                                        <th>
+                                            Note /20
+                                        </th>
+
+                                        <th>
+                                            ECTS
+                                        </th>
+
+                                        <th>
+                                            Résultat
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    ${
+                                        semester.subjects.map(
+                                            subject => {
+
+                                                const note =
+                                                    parseFloat(
+                                                        subject[1]
+                                                        .replace(
+                                                            ",",
+                                                            "."
+                                                        )
+                                                    );
+
+                                                const admitted =
+                                                    note >= 10;
+
+                                                return `
+
+                                                    <tr>
+
+                                                        <td>
+                                                            ${escapeHTML(
+                                                                subject[0]
+                                                            )}
+                                                        </td>
+
+                                                        <td>
+                                                            ${escapeHTML(
+                                                                subject[1]
+                                                            )}
+                                                        </td>
+
+                                                        <td>
+                                                            ${escapeHTML(
+                                                                subject[2]
+                                                            )}
+                                                        </td>
+
+                                                        <td
+                                                            class="${
+                                                                admitted
+                                                                ? "grade-ok"
+                                                                : "grade-fail"
+                                                            }"
+                                                        >
+
+                                                            ${
+                                                                admitted
+                                                                ? "Admis"
+                                                                : "Ajourné"
+                                                            }
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                `;
+
+                                            }
+                                        ).join("")
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    `
+                ).join("")
+            }
+
+            <div class="total-box">
+
+                <strong>
+
+                    Moyenne générale :
+                    ${escapeHTML(data.average)}
+
+                </strong>
+
+                <br><br>
+
+                Résultat annuel fictif :
+
+                <strong>
+
+                    ${escapeHTML(data.result)}
+
+                </strong>
+
+            </div>
+
+
+            <!-- DOCUMENTS DE CETTE ANNÉE -->
+
+            <h3>
+                Documents associés
+            </h3>
+
+            <div class="notice">
+
+                Les documents ci-dessous sont des
+                fichiers fictifs ajoutés à la maquette.
+                Ils ne constituent pas des documents
+                universitaires officiels.
+
+            </div>
+
+            <div>
+
+                ${
+                    renderYearDocuments(
+                        id
+                    )
+                }
+
+            </div>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="showDocuments()"
+            >
+
+                ← Retour aux relevés
+
+            </button>
+
+        `;
+
+}
+
+
+/* =====================================================
+   DOCUMENTS D'UNE ANNÉE
+===================================================== */
+
+function renderYearDocuments(id){
+
+    const list =
+        documents[id] || [];
+
+    if(!list.length){
+
+        return `
+
+            <div class="document">
+
+                <div class="document-info">
+
+                    <div class="document-name">
+                        Aucun document supplémentaire
+                    </div>
+
+                    <div class="document-meta">
+                        Aucun fichier fictif ajouté pour cette année.
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    return list.map(
+        doc => `
+
+            <div class="document">
+
+                <div class="document-info">
+
+                    <div class="document-name">
+
+                        📄
+                        ${escapeHTML(
+                            doc.name
+                        )}
+
+                    </div>
+
+                    <div class="document-meta">
+
+                        ${
+                            doc.type
+                            ? escapeHTML(doc.type)
+                            : "Document fictif"
+                        }
+
+                        ${
+                            doc.size
+                            ? " · " + formatSize(doc.size)
+                            : ""
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="document-actions">
+
+                    ${
+                        doc.data
+
+                        ?
+
+                        `
+
+                        <button
+                            class="action small"
+                            onclick="
+                                openDocument(
+                                    '${escapeHTML(doc.id)}',
+                                    '${escapeHTML(id)}'
+                                )
+                            "
+                        >
+
+                            Ouvrir
+
+                        </button>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+                </div>
+
+            </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+   GESTION DU COMPTE
+===================================================== */
+
+function showManagement(){
+
+    document
+        .getElementById("content")
+        .innerHTML = `
+
+            <h2>
+                Gestion du compte
+            </h2>
+
+            <div class="notice">
+
+                <strong>
+                    ESPACE DE GESTION DE LA MAQUETTE
+                </strong>
+
+                <br><br>
+
+                Cette rubrique permet d'ajouter
+                des fichiers fictifs à une année
+                de démonstration.
+
+                <br><br>
+
+                Les fichiers restent enregistrés
+                uniquement dans le navigateur utilisé
+                pour cette maquette.
+
+                <br><br>
+
+                Cette fonctionnalité ne modifie
+                aucun document universitaire réel.
+
+            </div>
+
+
+            <div class="admin-box">
+
+                <h3>
+                    Ajouter un document
+                </h3>
+
+
+                <label>
+                    Année concernée
+                </label>
+
+                <select
+                    id="adminYear"
+                    class="admin-select"
+                >
+
+                    ${
+                        years.map(
+                            year => `
+
+                                <option
+                                    value="${year.id}"
+                                >
+
+                                    ${escapeHTML(
+                                        year.title
+                                    )}
+
+                                </option>
+
+                            `
+                        ).join("")
+                    }
+
+                </select>
+
+
+                <label>
+                    Fichier fictif
+                </label>
+
+                <input
+                    id="adminFile"
+                    type="file"
+                    accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
+                    onchange="showSelectedFile()"
+                >
+
+
+                <div
+                    id="filePreview"
+                    class="file-preview"
+                >
+
+                    Aucun fichier sélectionné.
+
+                </div>
+
+
+                <br>
+
+
+                <button
+                    class="action"
+                    onclick="addUploadedDocument()"
+                >
+
+                    + Ajouter le document
+
+                </button>
+
+            </div>
+
+
+            <div class="admin-box">
+
+                <h3>
+                    Documents enregistrés
+                </h3>
+
+                <div id="adminDocuments">
+
+                </div>
+
+            </div>
+
+        `;
+
+
+    renderAdminDocuments();
+
+}
+
+
+/* =====================================================
+   APERCU DU FICHIER
+===================================================== */
+
+function showSelectedFile(){
+
+    const input =
+        document.getElementById(
+            "adminFile"
+        );
+
+    const preview =
+        document.getElementById(
+            "filePreview"
+        );
+
+
+    if(
+        !input ||
+        !preview
+    ){
+
+        return;
+
+    }
+
+
+    if(!input.files.length){
+
+        preview.textContent =
+            "Aucun fichier sélectionné.";
+
+        return;
+
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    preview.innerHTML = `
+
+        <strong>
+            Fichier sélectionné :
+        </strong>
+
+        ${escapeHTML(file.name)}
+
+        <br>
+
+        Taille :
+        ${formatSize(file.size)}
+
+    `;
+
+}
+
+
+/* =====================================================
+   AJOUTER UN VRAI FICHIER DANS LA MAQUETTE
+===================================================== */
+
+function addUploadedDocument(){
+
+    const yearSelect =
+        document.getElementById(
+            "adminYear"
+        );
+
+    const fileInput =
+        document.getElementById(
+            "adminFile"
+        );
+
+
+    if(
+        !yearSelect ||
+        !fileInput ||
+        !fileInput.files.length
+    ){
+
+        alert(
+            "Sélectionne d'abord un document."
+        );
+
+        return;
+
+    }
+
+
+    const yearId =
+        yearSelect.value;
+
+    const file =
+        fileInput.files[0];
+
+
+    /*
+       Limite volontaire pour éviter de remplir
+       le localStorage avec de très gros fichiers.
+    */
+
+    const maxSize =
+        5 * 1024 * 1024;
+
+
+    if(file.size > maxSize){
+
+        alert(
+            "Pour cette maquette, la taille maximale est de 5 Mo."
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(event){
+
+        if(!documents[yearId]){
+
+            documents[yearId] = [];
+
+        }
+
+
+        documents[yearId].push({
+
+            id:
+                "doc-" +
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2,8),
+
+            name:
+                file.name,
+
+            type:
+                file.type || "Document",
+
+            size:
+                file.size,
+
+            data:
+                event.target.result
+
+        });
+
+
+        if(
+            saveDocuments()
+        ){
+
+            fileInput.value = "";
+
+            const preview =
+                document.getElementById(
+                    "filePreview"
+                );
+
+            if(preview){
+
+                preview.textContent =
+                    "Document ajouté à la maquette.";
+
+            }
+
+            renderAdminDocuments();
+
+        }
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   AFFICHER DOCUMENTS ADMIN
+===================================================== */
+
+function renderAdminDocuments(){
+
+    const container =
+        document.getElementById(
+            "adminDocuments"
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    years.forEach(
+        year => {
+
+            const list =
+                documents[year.id] || [];
+
+
+            if(!list.length){
+
+                return;
+
+            }
+
+
+            html += `
+
+                <h4 style="margin-top:22px;">
+
+                    ${escapeHTML(
+                        year.title
+                    )}
+
+                </h4>
+
+            `;
+
+
+            list.forEach(
+                (doc,index) => {
+
+                    html += `
+
+                        <div class="document">
+
+                            <div class="document-info">
+
+                                <div class="document-name">
+
+                                    📄
+                                    ${escapeHTML(
+                                        doc.name
+                                    )}
+
+                                </div>
+
+                                <div class="document-meta">
+
+                                    ${escapeHTML(
+                                        doc.type ||
+                                        "Document fictif"
+                                    )}
+
+                                    ${
+                                        doc.size
+                                        ?
+                                        " · " +
+                                        formatSize(
+                                            doc.size
+                                        )
+                                        :
+                                        ""
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="document-actions">
+
+                                ${
+                                    doc.data
+                                    ?
+
+                                    `
+
+                                    <button
+                                        class="action small"
+                                        onclick="
+                                            openDocument(
+                                                '${escapeHTML(doc.id)}',
+                                                '${escapeHTML(year.id)}'
+                                            )
+                                        "
+                                    >
+
+                                        Ouvrir
+
+                                    </button>
+
+                                    `
+
+                                    :
+
+                                    ""
+
+                                }
+
+
+                                <button
+                                    class="action black small"
+                                    onclick="
+                                        deleteDocument(
+                                            '${escapeHTML(year.id)}',
+                                            '${escapeHTML(doc.id)}'
+                                        )
+                                    "
+                                >
+
+                                    Supprimer
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+    );
+
+
+    if(!html){
+
+        html = `
+
+            <div class="notice">
+
+                Aucun document fictif n'a encore été ajouté.
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML = html;
+
+}
+
+
+/* =====================================================
+   OUVRIR UN DOCUMENT
+===================================================== */
+
+function openDocument(
+    yearId,
+    documentId
+){
+
+    const list =
+        documents[documentId] ||
+        documents[yearId] ||
+        [];
+
+
+    /*
+       Recherche dans l'année sélectionnée.
+    */
+
+    const doc =
+        list.find(
+            item =>
+                item.id === documentId
+        );
+
+
+    if(!doc){
+
+        /*
+           Sécurité supplémentaire :
+           recherche globale.
+        */
+
+        let found = null;
+
+        Object.values(
+            documents
+        ).forEach(
+            array => {
+
+                if(found){
+                    return;
+                }
+
+                const result =
+                    array.find(
+                        item =>
+                            item.id === documentId
+                    );
+
+                if(result){
+                    found = result;
+                }
+
+            }
+        );
+
+        if(!found){
+
+            alert(
+                "Document introuvable."
+            );
+
+            return;
+
+        }
+
+        openDataURL(found);
+
+        return;
+
+    }
+
+
+    openDataURL(doc);
+
+}
+
+
+/* =====================================================
+   OUVERTURE DU FICHIER
+===================================================== */
+
+function openDataURL(doc){
+
+    if(!doc.data){
+
+        alert(
+            "Ce document ne contient pas de fichier à ouvrir."
+        );
+
+        return;
+
+    }
+
+
+    const newWindow =
+        window.open();
+
+
+    if(!newWindow){
+
+        alert(
+            "Autorise les fenêtres popup pour ouvrir le document."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Pour un PDF ou une image, le navigateur
+       peut l'afficher directement.
+    */
+
+    newWindow.document.write(`
+
+        <!DOCTYPE html>
+
+        <html lang="fr">
+
+        <head>
+
+            <meta charset="UTF-8">
+
+            <title>
+                Document fictif — Démonstration
+            </title>
+
+            <style>
+
+                body{
+                    margin:0;
+                    background:#f2f2f2;
+                    font-family:Arial,Helvetica,sans-serif;
+                }
+
+                .top{
+                    position:fixed;
+                    top:0;
+                    left:0;
+                    right:0;
+                    z-index:5;
+                    background:#111;
+                    color:#fff;
+                    text-align:center;
+                    padding:9px;
+                    font-size:12px;
+                    font-weight:700;
+                }
+
+                .content{
+                    padding-top:50px;
+                    text-align:center;
+                }
+
+                .label{
+                    background:#fff;
+                    margin:20px auto;
+                    max-width:800px;
+                    padding:15px;
+                    border-left:5px solid #d72f27;
+                    text-align:left;
+                }
+
+                iframe{
+                    width:95%;
+                    height:85vh;
+                    border:0;
+                    background:#fff;
+                }
+
+                img{
+                    max-width:95%;
+                    max-height:85vh;
+                    background:#fff;
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <div class="top">
+
+                DOCUMENT FICTIF —
+                DÉMONSTRATION —
+                SITE NON OFFICIEL
+
+            </div>
+
+            <div class="content">
+
+                <div class="label">
+
+                    <strong>
+                        ${escapeHTML(doc.name)}
+                    </strong>
+
+                    <br><br>
+
+                    Ce fichier est présenté dans
+                    une maquette fictive et ne constitue
+                    pas un document universitaire officiel.
+
+                </div>
+
+                ${
+                    doc.type &&
+                    doc.type.includes("image")
+
+                    ?
+
+                    `<img src="${doc.data}" alt="Document fictif">`
+
+                    :
+
+                    `<iframe src="${doc.data}"></iframe>`
+
+                }
+
+            </div>
+
+        </body>
+
+        </html>
+
+    `);
+
+
+    newWindow.document.close();
+
+}
+
+
+/* =====================================================
+   SUPPRIMER DOCUMENT
+===================================================== */
+
+function deleteDocument(
+    yearId,
+    documentId
+){
+
+    if(!documents[yearId]){
+
+        return;
+
+    }
+
+
+    documents[yearId] =
+        documents[yearId].filter(
+            doc =>
+                doc.id !== documentId
+        );
+
+
+    saveDocuments();
+
+    renderAdminDocuments();
+
+}
+
+
+/* =====================================================
+   AUTRES SERVICES
+===================================================== */
+
+function showGeneric(id){
+
+    const service =
+        services.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!service){
+
+        return;
+
+    }
+
+
+    const messages = {
+
+        reinscription:
+            "Aucune campagne de ré-inscription ouverte actuellement dans cette démonstration.",
+
+        ipweb:
+            "Votre inscription pédagogique fictive est enregistrée.",
+
+        messagerie:
+            "Aucun nouveau message.",
+
+        emploi:
+            "Aucun cours fictif n'est programmé pour le moment.",
+
+        scolarite:
+            "Les informations affichées ici sont entièrement fictives.",
+
+        compte:
+            "Compte fictif actif. Adresse : etudiant@demo.local",
+
+        job:
+            "Aucune candidature ou offre fictive enregistrée.",
+
+        honorabilite:
+            "Aucune demande d'attestation fictive en cours.",
+
+        justificatifs:
+            "Il n'y a pas de pièce justificative pour le moment.",
+
+        contrat:
+            "Contrat pédagogique pas encore disponible.",
+
+        cours:
+            "Aucun espace de cours fictif disponible actuellement.",
+
+        conventions:
+            "Aucune convention de stage enregistrée.",
+
+        outils:
+            "Espace réservé aux outils fictifs de la maquette.",
+
+        reseau:
+            "Aucune ressource fictive supplémentaire disponible."
+
+    };
+
+
+    document
+        .getElementById("content")
+        .innerHTML = `
+
+            <h2>
+                ${escapeHTML(
+                    service.title
+                )}
+            </h2>
+
+            <p>
+                ${escapeHTML(
+                    service.description
+                )}
+            </p>
+
+            <div class="notice">
+
+                ${escapeHTML(
+                    messages[id] ||
+                    "Contenu de démonstration."
+                )}
+
+            </div>
+
+        `;
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function openMenu(){
+
+    alert(
+        "Menu de démonstration"
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+renderCards();
+
+</script>
+
+</body>
+</html>
